@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Load and process sales data
-    Papa.parse('../../data/Total_sales_per_product.csv', {
+    Papa.parse('../data/Total_sales_per_product.csv', {
         download: true,
         header: true,
         skipEmptyLines: true,
@@ -484,7 +484,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    Papa.parse('../../data/full_forecast_with_history.csv', {
+    Papa.parse('../data/full_forecast_with_history.csv', {
         download: true,
         header: true,
         skipEmptyLines: true,
@@ -708,7 +708,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Load and process conversion rate data
-    Papa.parse('../../data/conversion_rate.csv', {
+    Papa.parse('../data/conversion_rate.csv', {
         download: true,
         header: true,
         skipEmptyLines: true,

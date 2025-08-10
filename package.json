@@ -1,14 +1,16 @@
 {
-  "name": "my-frontend-app",
+  "name": "cosmos-frontend",
   "version": "1.0.0",
-  "description": "A light-weighted front-end application with multiple pages.",
-  "main": "src/index.html",
+  "description": "COSMOS - Navigate the Universe of Inventory Management",
+  "main": "docs/index.html",
+  "homepage": "https://anapaulaelz.github.io/COSMOS_frontend",
   "scripts": {
-    "start": "live-server src",
-    "build": "echo 'Build step not defined'"
+    "start": "live-server docs",
+    "build": "echo 'Build step not defined'",
+    "deploy": "gh-pages -d docs"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["inventory", "management", "dashboard", "cosmos"],
+  "author": "Ana Paula Elizondo",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {

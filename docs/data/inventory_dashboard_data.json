@@ -1,0 +1,103 @@
+{
+  "last_updated": "2025-08-10T23:58:28.118533",
+  "metrics": {
+    "total_products": 5,
+    "total_stock_units": 162,
+    "total_value": 118538,
+    "low_stock_alerts": 2,
+    "out_of_stock": 0,
+    "reorder_needed": 3
+  },
+  "products": [
+    {
+      "sku": "1",
+      "name": "Set LeBorêt No. 1",
+      "variant": "3 x 100ml",
+      "current_stock": 28,
+      "reorder_point": 45,
+      "unit_price": 1599,
+      "total_value": 44772,
+      "status": "low_stock",
+      "last_restock": "2024-08-01",
+      "forecast_demand": 25
+    },
+    {
+      "sku": "2",
+      "name": "Set Descubriendo LeBorêt",
+      "variant": "3 x 5ml",
+      "current_stock": 13,
+      "reorder_point": 25,
+      "unit_price": 99,
+      "total_value": 1287,
+      "status": "critical",
+      "last_restock": "2024-07-15",
+      "forecast_demand": 15
+    },
+    {
+      "sku": "10",
+      "name": "Tundra Eau de Parfum",
+      "variant": "100ml",
+      "current_stock": 28,
+      "reorder_point": 22,
+      "unit_price": 599,
+      "total_value": 16772,
+      "status": "low_stock",
+      "last_restock": "2024-06-20",
+      "forecast_demand": 8
+    },
+    {
+      "sku": "2002",
+      "name": "Manhattan Eau de Parfum",
+      "variant": "100ml",
+      "current_stock": 56,
+      "reorder_point": 20,
+      "unit_price": 599,
+      "total_value": 33544,
+      "status": "healthy",
+      "last_restock": "2024-07-01",
+      "forecast_demand": 12
+    },
+    {
+      "sku": "1035",
+      "name": "Sahara Eau de Parfum",
+      "variant": "100ml",
+      "current_stock": 37,
+      "reorder_point": 18,
+      "unit_price": 599,
+      "total_value": 22163,
+      "status": "healthy",
+      "last_restock": "2024-05-15",
+      "forecast_demand": 3
+    }
+  ],
+  "sales_summary": {
+    "daily_avg": 12.5,
+    "weekly_total": 87,
+    "monthly_total": 348,
+    "top_seller": "Set LeBorêt No. 1",
+    "revenue_total": 118538
+  },
+  "alerts": [
+    {
+      "type": "critical_stock",
+      "product": "Set Descubriendo LeBorêt",
+      "sku": "2",
+      "message": "Critical stock level - immediate reorder needed",
+      "priority": "high"
+    },
+    {
+      "type": "low_stock",
+      "product": "Set LeBorêt No. 1",
+      "sku": "1",
+      "message": "Stock below reorder point",
+      "priority": "medium"
+    },
+    {
+      "type": "low_stock",
+      "product": "Tundra Eau de Parfum",
+      "sku": "10",
+      "message": "Stock below reorder point",
+      "priority": "medium"
+    }
+  ]
+}

@@ -1,69 +1,99 @@
 // Smart Inventory Management System
 class SmartInventory {
     constructor() {
-        this.products = [
-            {
-                id: 2,
-                name: "Set Descubriendo LeBorêt",
-                variant: "3 x 5ml",
-                currentStock: 13,
-                avgDailyDemand: 0.28, // Real data: 196 units sold / 697 days = 0.28
-                reorderPoint: 25,
-                safetyStock: 5,
-                cost: 30,
-                status: 'critical'
-            },
-            {
-                id: 1,
-                name: "Set LeBorêt No. 1",
-                variant: "3 x 100ml",
-                currentStock: 28,
-                avgDailyDemand: 1.13, // Real data: 786 units sold / 697 days = 1.13
-                reorderPoint: 45,
-                safetyStock: 10,
-                cost: 660,
-                status: 'warning'
-            },
-            {
-                id: 2002,
-                name: "Manhattan Eau de Parfum",
-                variant: "100ml",
-                currentStock: 56,
-                avgDailyDemand: 0.16, // Real data: 113 units sold / 697 days = 0.16
-                reorderPoint: 20,
-                safetyStock: 6,
-                cost: 150,
-                status: 'good'
-            },
-            {
-                id: 1035,
-                name: "Sahara Eau de Parfum",
-                variant: "100ml",
-                currentStock: 37,
-                avgDailyDemand: 0.03, // Real data: 20 units sold / 697 days = 0.03
-                reorderPoint: 18,
-                safetyStock: 6,
-                cost: 170,
-                status: 'good'
-            },
-            {
-                id: 10,
-                name: "Tundra Eau de Parfum",
-                variant: "100ml",
-                currentStock: 28,
-                avgDailyDemand: 0.04, // Real data: 30 units sold / 697 days = 0.04
-                reorderPoint: 22,
-                safetyStock: 7,
-                cost: 150,
-                status: 'warning'
-            }
-        ];
-
+        this.products = [];
         this.leadTime = 15; // days
         this.bufferTime = 2; // days
         this.totalLeadTime = this.leadTime + this.bufferTime;
+        
+        // Load real data first, then initialize
+        this.loadInventoryData().then(() => {
+            this.init();
+        });
+    }
 
-        this.init();
+    async loadInventoryData() {
+        try {
+            const response = await fetch('../data/inventory_dashboard_data.json');
+            const data = await response.json();
+            
+            // Convert JSON data to the format expected by the application
+            this.products = data.products.map(product => ({
+                id: parseInt(product.sku),
+                name: product.name,
+                variant: product.variant,
+                currentStock: product.current_stock,
+                avgDailyDemand: product.forecast_demand / 30, // Convert monthly to daily
+                reorderPoint: product.reorder_point,
+                safetyStock: Math.max(5, Math.round(product.reorder_point * 0.2)),
+                cost: product.unit_price, // Use the unit price directly from JSON
+                status: product.status === 'healthy' ? 'good' : 
+                       product.status === 'low_stock' ? 'warning' : 
+                       product.status === 'critical' ? 'critical' : 'critical'
+            }));
+            
+            console.log('Inventory data loaded:', this.products.length, 'products');
+        } catch (error) {
+            console.error('Error loading inventory data:', error);
+            // Fallback to static data if loading fails
+            this.products = [
+                {
+                    id: 2,
+                    name: "Set Descubriendo LeBorêt",
+                    variant: "3 x 5ml",
+                    currentStock: 200,
+                    avgDailyDemand: 0.5,
+                    reorderPoint: 30,
+                    safetyStock: 6,
+                    cost: 99,
+                    status: 'good'
+                },
+                {
+                    id: 1,
+                    name: "Set LeBorêt No. 1",
+                    variant: "3 x 100ml",
+                    currentStock: 150,
+                    avgDailyDemand: 0.8,
+                    reorderPoint: 20,
+                    safetyStock: 4,
+                    cost: 1599,
+                    status: 'good'
+                },
+                {
+                    id: 2002,
+                    name: "Manhattan Eau de Parfum",
+                    variant: "100ml",
+                    currentStock: 75,
+                    avgDailyDemand: 0.4,
+                    reorderPoint: 30,
+                    safetyStock: 6,
+                    cost: 599,
+                    status: 'good'
+                },
+                {
+                    id: 1035,
+                    name: "Limited Edition Set",
+                    variant: "Special",
+                    currentStock: 5,
+                    avgDailyDemand: 0.1,
+                    reorderPoint: 10,
+                    safetyStock: 2,
+                    cost: 899,
+                    status: 'critical'
+                },
+                {
+                    id: 10,
+                    name: "Tundra Eau de Parfum",
+                    variant: "100ml",
+                    currentStock: 50,
+                    avgDailyDemand: 0.3,
+                    reorderPoint: 25,
+                    safetyStock: 5,
+                    cost: 599,
+                    status: 'warning'
+                }
+            ];
+        }
     }
 
     init() {

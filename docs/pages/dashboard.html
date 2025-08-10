@@ -702,7 +702,7 @@
             console.log('Loading real dashboard data...');
             
             // Load sales data
-            Papa.parse('../../data/Total_sales_per_product.csv', {
+            Papa.parse('../data/Total_sales_per_product.csv', {
                 download: true,
                 header: true,
                 skipEmptyLines: true,
@@ -711,7 +711,7 @@
                     dashboardData.sales = salesResults.data;
                     
                     // Load inventory data
-                    Papa.parse('../../data/inventory_summary.csv', {
+                    Papa.parse('../data/inventory_summary.csv', {
                         download: true,
                         header: true,
                         skipEmptyLines: true,
@@ -720,7 +720,7 @@
                             dashboardData.inventory = inventoryResults.data;
                             
                             // Load fulfillment data
-                            Papa.parse('../../data/fulfillment_data.csv', {
+                            Papa.parse('../data/fulfillment_data.csv', {
                                 download: true,
                                 header: true,
                                 skipEmptyLines: true,

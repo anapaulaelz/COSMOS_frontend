@@ -2,6 +2,14 @@
 
 COSMOS is a sophisticated frontend application designed for inventory management and business intelligence. Built with a cosmic space theme, it provides a comprehensive suite of tools for managing inventory, forecasting demand, tracking fulfillment, and monitoring business operations.
 
+## 🚀 Live Demo
+
+**🌐 [View Live Application](https://anapaulaelz.github.io/COSMOS_frontend)**
+
+Experience COSMOS directly in your browser! No installation required.
+- **Username**: `admin`
+- **Password**: `admin123`
+
 ## 🚀 Project Overview
 
 This is a modern, responsive web application that combines inventory management with an immersive space-themed user interface. The application features a unified navigation system and modular architecture that makes it easy to extend and maintain.
@@ -9,35 +17,46 @@ This is a modern, responsive web application that combines inventory management 
 ## 📁 Project Structure
 
 ```
-my-frontend-app/
-├── src/
-│   ├── index.html                    # Login page (main entry point)
-│   ├── css/                          # Stylesheets
-│   │   ├── styles.css               # Global styles and base theme
-│   │   ├── cosmic-sidebar.css       # Navigation sidebar styles
-│   │   ├── login.css               # Login page specific styles
-│   │   ├── demand-forecasting.css  # Demand forecasting page styles
-│   │   ├── fulfillment.css         # Fulfillment page styles
-│   │   └── smart-inventory.css     # Smart inventory page styles
-│   ├── js/                          # JavaScript modules
-│   │   ├── cosmic-sidebar.js       # Navigation and sidebar functionality
-│   │   ├── main.js                 # Core application logic
-│   │   ├── login.js                # Login page functionality
-│   │   ├── demand-forecasting.js   # Demand forecasting features
-│   │   ├── fulfillment.js          # Fulfillment page logic
-│   │   └── smart-inventory.js      # Smart inventory management
-│   └── pages/                       # Application pages
-│       ├── dashboard.html           # Main dashboard with metrics
-│       ├── demand-forecasting.html  # Demand prediction and analytics
-│       ├── smart-inventory.html     # Inventory management interface
-│       ├── fulfillment.html         # Order fulfillment tracking
-│       ├── alarms-alerts.html       # System alerts and notifications
-│       ├── todo-board.html          # Task management board
-│       ├── calendar.html            # Calendar and scheduling
-│       ├── partners.html            # Partner management
-│       └── document-base.html       # Document repository
-├── package.json                     # Project configuration
-└── README.md                        # This documentation
+COSMOS_frontend/
+├── docs/                            # GitHub Pages source (web-ready)
+│   ├── index.html                   # Login page (main entry point)
+│   ├── css/                         # Stylesheets (6 files)
+│   │   ├── styles.css              # Global styles and base theme
+│   │   ├── cosmic-sidebar.css      # Navigation sidebar styles
+│   │   ├── login.css              # Login page specific styles
+│   │   ├── demand-forecasting.css # Demand forecasting page styles
+│   │   ├── fulfillment.css        # Fulfillment page styles
+│   │   └── smart-inventory.css    # Smart inventory page styles
+│   ├── js/                         # JavaScript modules (6 files)
+│   │   ├── cosmic-sidebar.js      # Navigation and sidebar functionality
+│   │   ├── main.js                # Core application logic
+│   │   ├── login.js               # Login page functionality
+│   │   ├── demand-forecasting.js  # Demand forecasting features
+│   │   ├── fulfillment.js         # Fulfillment page logic
+│   │   └── smart-inventory.js     # Smart inventory management
+│   ├── pages/                      # Application pages (9 files)
+│   │   ├── dashboard.html          # Main dashboard with metrics
+│   │   ├── demand-forecasting.html # Demand prediction and analytics
+│   │   ├── smart-inventory.html    # Inventory management interface
+│   │   ├── fulfillment.html        # Order fulfillment tracking
+│   │   ├── alarms-alerts.html      # System alerts and notifications
+│   │   ├── todo-board.html         # Task management board
+│   │   ├── calendar.html           # Calendar and scheduling
+│   │   ├── partners.html           # Partner management
+│   │   └── document-base.html      # Document repository
+│   └── data/                       # Real datasets for frontend (7 files)
+│       ├── Total_sales_per_product.csv     # Sales data by product
+│       ├── conversion_rate.csv             # Conversion and session data
+│       ├── full_forecast_with_history.csv  # Forecasting data
+│       ├── inventory_dashboard_data.json   # Inventory metrics and alerts
+│       ├── inventory_summary.csv           # Inventory summary
+│       ├── fulfillment_data.csv           # Shipping zones and times
+│       └── partners.csv                   # Business partners data
+├── .github/workflows/              # GitHub Actions for auto-deployment
+├── .gitignore                      # Git ignore patterns
+├── package.json                    # Project configuration
+├── README.md                       # This documentation
+└── GITHUB_PAGES_SETUP.md          # GitHub Pages setup guide
 ```
 
 ## 🌟 Features & Pages
@@ -139,33 +158,49 @@ my-frontend-app/
 
 ## 🚀 Setup Instructions
 
-### Prerequisites
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- Local web server (recommended) or ability to open HTML files
+### 🌐 Quick Start (Recommended)
+**Simply visit the live application**: [https://anapaulaelz.github.io/COSMOS_frontend](https://anapaulaelz.github.io/COSMOS_frontend)
 
-### Installation
+No installation needed! The application is hosted on GitHub Pages and ready to use.
+
+### 🛠️ Local Development
+
+#### Prerequisites
+- Modern web browser (Chrome, Firefox, Safari, Edge)
+- Node.js (for local development server)
+
+#### Installation
 1. **Download/Clone the project**:
    ```bash
-   git clone <repository-url>
-   cd my-frontend-app
+   git clone https://github.com/anapaulaelz/COSMOS_frontend.git
+   cd COSMOS_frontend
    ```
 
-2. **Serve the application**:
-   - **Option A**: Use a local server (recommended)
-     ```bash
-     # Using Python
-     python -m http.server 8000
-     
-     # Using Node.js
-     npx serve .
-     
-     # Using PHP
-     php -S localhost:8000
-     ```
-   - **Option B**: Open `src/index.html` directly in browser
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-3. **Access the application**:
-   - Navigate to `http://localhost:8000/src/index.html`
+3. **Start development server**:
+   ```bash
+   npm start
+   ```
+   This will serve the application from the `docs` folder on `http://localhost:8080`
+
+4. **Alternative: Serve manually**:
+   ```bash
+   # Using Python
+   cd docs && python -m http.server 8000
+   
+   # Using Node.js
+   cd docs && npx serve .
+   
+   # Using PHP
+   cd docs && php -S localhost:8000
+   ```
+
+5. **Access the application**:
+   - Navigate to `http://localhost:8080` (or respective port)
    - Login with: `admin` / `admin123`
 
 ## 🔧 Configuration

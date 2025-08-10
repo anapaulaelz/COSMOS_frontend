@@ -3,6 +3,7 @@ class FulfillmentManager {
     constructor() {
         this.currentWeek = new Date();
         this.orders = [];
+        this.fulfillmentData = [];
         // Internal partners available for assignment
         this.employees = [
             { id: 1, name: 'German Gomez', role: 'Direction', avatar: 'G', capacity: 15, assigned: 6 },
@@ -14,7 +15,55 @@ class FulfillmentManager {
             { id: 'bajio', name: 'Zona Bajío-Occidente', shippingDays: 4, orders: 8, capacity: 0.6 },
             { id: 'sur', name: 'Zona Sur', shippingDays: 5, orders: 12, capacity: 0.8 }
         ];
-        this.init();
+        
+        // Load real fulfillment data first
+        this.loadFulfillmentData().then(() => {
+            this.init();
+        });
+    }
+
+    async loadFulfillmentData() {
+        try {
+            // Load fulfillment data using Papa Parse
+            const response = await new Promise((resolve, reject) => {
+                Papa.parse('../data/fulfillment_data.csv', {
+                    download: true,
+                    header: true,
+                    skipEmptyLines: true,
+                    complete: resolve,
+                    error: reject
+                });
+            });
+            
+            this.fulfillmentData = response.data;
+            console.log('Fulfillment data loaded:', this.fulfillmentData.length, 'records');
+            
+            // Update zones with real data
+            this.updateZonesFromData();
+            
+        } catch (error) {
+            console.error('Error loading fulfillment data:', error);
+        }
+    }
+
+    updateZonesFromData() {
+        // Calculate average shipping times for each zone from real data
+        const zoneMap = {
+            'Zona Norte': 'norte',
+            'Zona Centro': 'centro', 
+            'Zona Bajío–Occidente': 'bajio',
+            'Zona Sur': 'sur'
+        };
+
+        this.fulfillmentData.forEach(row => {
+            const zoneId = zoneMap[row['Shipping Zone']];
+            if (zoneId) {
+                const zone = this.zones.find(z => z.id === zoneId);
+                if (zone) {
+                    zone.shippingDays = parseInt(row['Shipping Time (Business Days)']) || zone.shippingDays;
+                }
+            }
+        });
     }
 
     init() {
